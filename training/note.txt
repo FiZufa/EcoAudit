@@ -1,0 +1,25 @@
+(pmrdb-env) D:\EcoAudit\training>python prepare_dataset.py
+Found 14 classes: ['Battery', 'Biological', 'Cable', 'Can', 'Cardboard', 'Clothes', 'E-waste', 'Glass', 'Medical Waste', 'Metal', 'Paper', 'Plastic', 'Shoes', 'Trash']
+
+  Battery              (id=0)  total=756  train=604  val=113  test=39
+  Biological           (id=1)  total=699  train=559  val=104  test=36
+  Cable                (id=2)  total=162  train=129  val=24  test=9
+  Can                  (id=3)  total=100  train=80  val=15  test=5
+  Cardboard            (id=4)  total=1411  train=1128  val=211  test=72
+  Clothes              (id=5)  total=1892  train=1513  val=283  test=96
+  E-waste              (id=6)  total=334  train=267  val=50  test=17
+  Glass                (id=7)  total=1921  train=1536  val=288  test=97
+  Medical Waste        (id=8)  total=80  train=64  val=12  test=4
+  Metal                (id=9)  total=1143  train=914  val=171  test=58
+  Paper                (id=10)  total=1336  train=1068  val=200  test=68
+  Plastic              (id=11)  total=1851  train=1480  val=277  test=94
+  Shoes                (id=12)  total=1449  train=1159  val=217  test=73
+  Trash                (id=13)  total=453  train=362  val=67  test=24
+
+Done!
+  Train : 10863 images
+  Val   : 2032 images
+  Test  : 692 images
+
+Output  : D:\EcoAudit\training\dataset_yolo
+Config  : D:\EcoAudit\training\dataset_yolo\data.yaml

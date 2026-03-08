@@ -1,0 +1,20 @@
+path: D:\EcoAudit\training\dataset_yolo
+train: images/train
+val: images/val
+test: images/test
+nc: 14
+names:
+- Battery
+- Biological
+- Cable
+- Can
+- Cardboard
+- Clothes
+- E-waste
+- Glass
+- Medical Waste
+- Metal
+- Paper
+- Plastic
+- Shoes
+- Trash
