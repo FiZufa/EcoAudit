@@ -23,3 +23,25 @@ Done!
 
 Output  : D:\EcoAudit\training\dataset_yolo
 Config  : D:\EcoAudit\training\dataset_yolo\data.yaml
+
+
+Model Size Options (yolo11?.pt)
+
+  ┌────────────┬─────────┬──────────┬────────────────────────────┐
+  │   Model    │  Speed  │ Accuracy │          Use when          │
+  ├────────────┼─────────┼──────────┼────────────────────────────┤
+  │ yolo11n.pt │ Fastest │ Lowest   │ Testing / low-end hardware │
+  ├────────────┼─────────┼──────────┼────────────────────────────┤
+  │ yolo11s.pt │ Fast    │ Good     │ Balanced                   │
+  ├────────────┼─────────┼──────────┼────────────────────────────┤
+  │ yolo11m.pt │ Medium  │ Better   │ Good GPU available         │
+  ├────────────┼─────────┼──────────┼────────────────────────────┤
+  │ yolo11l.pt │ Slow    │ High     │ Strong GPU                 │
+  ├────────────┼─────────┼──────────┼────────────────────────────┤
+  │ yolo11x.pt │ Slowest │ Highest  │ Maximum accuracy           │
+  └────────────┴─────────┴──────────┴────────────────────────────┘
+
+  Start with yolo11n.pt to verify everything works, then switch to a larger model.
+
+(pmrdb-env) D:\EcoAudit\training>python -c "import torch; print(torch.cuda.get_device_name(0))"
+NVIDIA GeForce RTX 3050 6GB Laptop GPU
