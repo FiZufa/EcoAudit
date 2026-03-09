@@ -1,4 +1,4 @@
-path: D:\EcoAudit\training\dataset_yolo
+path: D:\EcoAudit\training\dataset
 train: images/train
 val: images/val
 test: images/test
