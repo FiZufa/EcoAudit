@@ -193,3 +193,6 @@ result only one bounding box.
   Also notice: both confidences are below 0.5 (0.4805 and 0.1498). Did you lower the conf parameter in Swagger when
   testing /detect? If you called /detect/image with the default conf=0.5, the Paper detection (0.4805) would actually be
    filtered out too.
+
+streamlit run app.py
+   http://localhost:8501
