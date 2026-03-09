@@ -45,3 +45,89 @@ Model Size Options (yolo11?.pt)
 
 (pmrdb-env) D:\EcoAudit\training>python -c "import torch; print(torch.cuda.get_device_name(0))"
 NVIDIA GeForce RTX 3050 6GB Laptop GPU
+
+● Install dependencies if you haven't:
+
+  pip install fastapi uvicorn pillow
+
+  Run the API:
+
+  uvicorn api:app --reload
+
+  Then open http://localhost:8000/docs for the auto-generated interactive UI to test it.
+
+  Example response from POST /detect:
+  {
+    "filename": "trash.jpg",
+    "detections": [
+      {
+        "class_id": 11,
+        "class_name": "Plastic",
+        "confidence": 0.8731,
+        "bbox": { "x1": 120.5, "y1": 80.2, "x2": 340.1, "y2": 290.7 }
+      }
+    ],
+    "count": 1
+  }
+
+  You can also adjust confidence threshold via query param: POST /detect?conf=0.3
+
+> what does it mean by passing confidence thereshold?
+
+● The conf parameter filters out weak detections.
+
+  YOLO assigns a confidence score (0–1) to each detection — how sure it is that the object is what it thinks it is.
+
+  - conf=0.5 (default) → only return detections where the model is ≥50% confident
+  - conf=0.3 → return more detections, including less certain ones
+  - conf=0.8 → only return detections the model is very confident about
+
+  Example:
+
+  Say the model scans an image and finds:
+
+  ┌─────────┬────────────┐
+  │ Object  │ Confidence │
+  ├─────────┼────────────┤
+  │ Plastic │ 0.87       │
+  ├─────────┼────────────┤
+  │ Can     │ 0.45       │
+  ├─────────┼────────────┤
+  │ Trash   │ 0.21       │
+  └─────────┴────────────┘
+
+  - At conf=0.5 → returns only Plastic
+  - At conf=0.3 → returns Plastic + Can
+  - At conf=0.2 → returns all three
+
+  Rule of thumb:
+  - Lower conf = more detections, more false positives
+  - Higher conf = fewer detections, more accurate
+
+  0.5 is a safe default for most cases.
+
+
+Project Structure Plan
+
+  EcoAudit/
+  ├── training/           # (done)
+  ├── backend/            # FastAPI — move/adapt api.py here
+  │   ├── main.py
+  │   └── requirements.txt
+  └── frontend/           # Nuxt 3
+      ├── pages/
+      ├── components/
+      └── ...
+
+  Step 1: Set up the backend
+
+  Copy training/api.py → backend/main.py and add CORS so Nuxt can call it.
+
+  Want me to set up the backend/ folder now? I'll:
+  - Create backend/main.py (the API with CORS added)
+  - Create backend/requirements.txt
+
+  Step 2: Scaffold Nuxt 3 frontend
+
+  You'll run npx nuxi init frontend yourself (requires Node.js), then we build the pages together.
+
