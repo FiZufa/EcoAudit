@@ -131,3 +131,65 @@ Project Structure Plan
 
   You'll run npx nuxi init frontend yourself (requires Node.js), then we build the pages together.
 
+
+> I tried to upload image of several waste in one image. The detection result is as follow. However, detect/image
+result only one bounding box.
+
+● Can you share the JSON output from /detect? That'll help pinpoint whether the issue is in the detection or in the
+  drawing.
+
+  But most likely the simplest fix is to use ultralytics' built-in drawing instead of manual PIL — it's more reliable
+  and already handles all boxes correctly:
+
+● Read 1 file (ctrl+o to expand)
+
+> {
+  "filename": "wate_1.jpg",
+  "detections": [
+    {
+      "class_id": 10,
+      "class_name": "Paper",
+      "confidence": 0.4805,
+      "bbox": {
+        "x1": 0.19,
+        "y1": 0,
+        "x2": 735,
+        "y2": 565
+      }
+    },
+    {
+      "class_id": 11,
+      "class_name": "Plastic",
+      "confidence": 0.1498,
+      "bbox": {
+        "x1": 0.85,
+        "y1": 0,
+        "x2": 735,
+        "y2": 565
+      }
+    }
+  ],
+  "count": 2
+}
+
+● The code is actually working correctly — both boxes are being drawn. The issue is the bounding boxes themselves are
+  nearly identical:
+
+  ┌─────────┬──────┬─────┬─────┬─────┐
+  │  Class  │  x1  │ y1  │ x2  │ y2  │
+  ├─────────┼──────┼─────┼─────┼─────┤
+  │ Paper   │ 0.19 │ 0   │ 735 │ 565 │
+  ├─────────┼──────┼─────┼─────┼─────┤
+  │ Plastic │ 0.85 │ 0   │ 735 │ 565 │
+  └─────────┴──────┴─────┴─────┴─────┘
+
+  Both cover almost the entire image — so one is drawn on top of the other and it looks like only one box.
+
+  This is a model detection issue, not a code bug. There are two possible reasons:
+
+  1. The image has heavy overlap — mixed waste piled together, so the model draws the whole region for each class
+  2. The model needs better training — yolo11n (the smallest/fastest model) tends to produce less precise bounding boxes
+
+  Also notice: both confidences are below 0.5 (0.4805 and 0.1498). Did you lower the conf parameter in Swagger when
+  testing /detect? If you called /detect/image with the default conf=0.5, the Paper detection (0.4805) would actually be
+   filtered out too.
