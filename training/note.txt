@@ -247,3 +247,16 @@ streamlit run app.py
   ⚠  Can             AP@50=0.815
 
 ==============================================================
+
+> So far, the project work to detect image into 12 waste categories. Now, I want to change the scenario so that it give
+ diagnostic returning image with bounding box, purity score (0-100%), status (CONTAMINATED/CLEAN), and detection (waste
+ and disposal guidance), details are specified in frontend/diagnostic_config.json. Please modify the code for me.
+
+● Recalled 1 memory, searched for 1 pattern, read 3 files (ctrl+o to expand)
+
+● Now I have a clear picture of the codebase. Let me plan and implement the changes:
+
+  Plan:
+  - Frontend: Load diagnostic_config.json, compute purity score using tier-based penalties, show tier-colored bounding
+  boxes, display purity score gauge, CONTAMINATED/CLEAN badge, and per-detection disposal guidance.
+  - Backend: Add /diagnostic (JSON) and /diagnostic/image endpoints using the same config logic.
