@@ -1,0 +1,59 @@
+{
+  "project": "EcoAudit",
+  "version": "1.0",
+  "scoring_logic": {
+    "base_score": 100,
+    "tier_1_behavior": "immediate_zero",
+    "min_score": 0
+  },
+  "categories": {
+    "tier_1": {
+      "name": "Immediate Hazard",
+      "severity": "Critical",
+      "color_code": "#FF0000",
+      "labels": ["Battery", "Biological", "Medical Waste"],
+      "penalty_per_unit": 100,
+      "global_instruction": "STOP. Biohazard or fire risk detected. Do not handle manually."
+    },
+    "tier_2": {
+      "name": "Special Handling",
+      "severity": "High",
+      "color_code": "#FFA500",
+      "labels": ["E-waste", "Cable"],
+      "penalty_per_unit": 25,
+      "global_instruction": "Divert to electronics recycling. Do not process with standard recyclables."
+    },
+    "tier_3": {
+      "name": "Non-Hazardous Contaminant",
+      "severity": "Medium",
+      "color_code": "#FFFF00",
+      "labels": ["Clothes", "Shoes", "Trash"],
+      "penalty_per_unit": 15,
+      "global_instruction": "Material diversion required. Items are safe but incorrectly sorted."
+    },
+    "tier_4": {
+      "name": "Clean Recyclable",
+      "severity": "Low",
+      "color_code": "#00FF00",
+      "labels": ["Can", "Cardboard", "Glass", "Metal", "Paper", "Plastic"],
+      "penalty_per_unit": 0,
+      "global_instruction": "Purity verified. Material is ready for automated processing."
+    }
+  },
+  "disposal_guidance": {
+    "Battery": "Flammable hazard. Tape terminals and dispose at a Household Hazardous Waste (HHW) center.",
+    "Biological": "Infection risk. Use PPE and dispose in a red biohazard bag.",
+    "Medical Waste": "Sharp/Infection risk. Place in a puncture-resistant Sharps container.",
+    "E-waste": "Contains heavy metals. Drop off at a certified electronics recycler.",
+    "Cable": "Tangling hazard for sorting machinery. Bundle and recycle as e-waste.",
+    "Clothes": "Not for curbside bins. Donate to charity or drop at a textile recycling bank.",
+    "Shoes": "Not for curbside bins. Donate if wearable or recycle at a specialized facility.",
+    "Trash": "Non-recyclable. Dispose of in the standard landfill bin.",
+    "Can": "Rinse out liquids and place in the metal recycling stream.",
+    "Cardboard": "Flatten boxes and ensure they are free of food grease/oil.",
+    "Glass": "Rinse and separate by color if required by local guidelines.",
+    "Metal": "Valuable scrap. Ensure it is free of hazardous attachments.",
+    "Paper": "Keep dry. Do not include shredded paper unless bagged.",
+    "Plastic": "Check resin codes (1-7). Rinse and remove plastic film/wraps."
+  }
+}
