@@ -2,3 +2,15 @@ fastapi
 uvicorn[standard]
 pillow
 ultralytics
+streamlit
+numpy
+opencv-python
+torch
+torchvision
+onnx
+pandas
+scikit-learn
+matplotlib
+seaborn
+scipy
+
